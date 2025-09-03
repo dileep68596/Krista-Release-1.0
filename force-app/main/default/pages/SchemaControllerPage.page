@@ -1,0 +1,60 @@
+<apex:page controller="SchemaController">
+    <div style="background-color:red; color:White; height:20px; text-align:center; font-size:18px;padding:20px; margin:5px;">
+        Project 3
+    </div>
+    <div style="margin:10px; font-size:14px;">
+        Choose the object, fields, and criteria to build a SOQL query below:
+    </div>
+    <apex:form >
+        
+        
+        
+        <apex:pageBlock id="p">
+            <b>Objects:</b><br/>
+            <apex:selectList size="1" value="{!selectedObject}" style="width:200px">
+                <apex:selectOptions value="{!options}">
+                </apex:selectOptions>
+            </apex:selectList>
+            <apex:commandButton value="getFields" action="{!getFields}" reRender="pb"/>
+        </apex:pageBlock>
+        
+        
+        
+        <apex:pageBlock id="pb">
+            <b>Fields:</b><br/>
+            <apex:selectList size="10" value="{!selectedField}" multiselect="true" style="width:200px">
+                <apex:selectOptions value="{!fieldOptions}">
+                </apex:selectOptions>
+            </apex:selectList>
+            <apex:commandButton value="select Field" action="{!selectFields}" reRender="pb1"/>
+        </apex:pageBlock>
+        
+        
+        
+        <apex:pageBlock id="pb1">
+            <b>Enter or modify a SOQL query below:</b><br/>
+            <apex:pageBlockSection >
+                <apex:inputTextarea value="{!query}" style="width:500px"/>
+            </apex:pageBlockSection>
+            
+            
+            
+            <apex:pageBlockSection >
+                <apex:commandButton value="Query" action="{!getResult}" reRender="pb2" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        
+        
+        <apex:pageBlock id="pb2" title="Query Results">
+            <apex:pageBlockTable value="{!queryResults}" var="a">
+                <apex:repeat value="{!selectedField}" var="displayfieldname">
+                    <apex:column value="{!a[displayfieldname]}"/>
+                </apex:repeat>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        
+        
+    </apex:form>
+</apex:page>

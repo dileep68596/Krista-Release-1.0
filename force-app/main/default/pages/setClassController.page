@@ -1,0 +1,10 @@
+<apex:page controller="setClass">
+   <apex:form >
+        <div align="center">
+            <apex:commandButton value="uniqueAccNames" />
+            <apex:commandButton value="uniquePhoneNos"/>
+            <apex:commandButton value="Total Revenue"/>
+        </div>
+    </apex:form>
+    
+</apex:page>

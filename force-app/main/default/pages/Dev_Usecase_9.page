@@ -1,0 +1,25 @@
+<apex:page standardController="Contact" >
+    <h1>
+        This is my page
+        Field reference: <!--{!ObjectName.fieldName} -->
+    </h1>
+    {!Contact.FirstName} <br/>
+    {!Contact.lastName}
+    <apex:form >
+    <apex:pageBlock >
+        	<apex:pageBlockButtons >
+        	<apex:commandButton value="edit" />
+        </apex:pageBlockButtons>
+    	<apex:pageBlockSection columns="3"> <!-- label of object field will render when outputtext is direct child to pageblock section -->
+        	<apex:outputText value="{!Contact.FirstName}" ></apex:outputText>
+            <apex:outputText value="{!Contact.LastName}" ></apex:outputText>
+            <apex:outputText value="{!Contact.Email}" ></apex:outputText>
+            <apex:outputText value="{!Contact.Phone}" ></apex:outputText>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection columns="1"> <!-- label of object field will render when outputtext is direct child to pageblock section -->
+        	<apex:outputText value="{!Contact.Department}" ></apex:outputText>
+            <apex:outputText value="{!Contact.Description}" ></apex:outputText>      
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+        </apex:form>
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page >
+    <apex:sectionHeader title="Account" subtitle="new Account" help="https://hippologic.in"/>
+    <apex:form >
+        <div align="center">
+            <apex:commandButton value="save"/>
+            <apex:commandButton value="Cancle"/>
+        </div>
+        <apex:pageBlock title="Basic Info">
+        	<apex:pageBlockSection >
+            	Name: <apex:inputText />
+                <apex:selectRadio >
+                	<apex:selectOption title="Bihar"></apex:selectOption>
+                </apex:selectRadio>
+                <apex:outputLabel >Type</apex:outputLabel>
+                	<apex:selectList >
+                <apex:selectOption >Private</apex:selectOption>
+                        <apex:selectOption >Public</apex:selectOption>
+                </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

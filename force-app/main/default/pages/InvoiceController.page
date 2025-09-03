@@ -1,0 +1,8 @@
+<apex:page controller="InvoiceController">
+    <apex:dataTable value="{!InvWrapList}" var="pw" cellpadding="10" cellspacing="10" frame="rules">
+    	<apex:column headerValue="Product Name" value="{!pw.prodName}"/>
+        <apex:column headerValue="Quantity" value="{!pw.quantity}"/>
+        <apex:column headerValue="Product Prict" value="{!pw.price}"/>
+        <apex:column headerValue="Date of Purchase" value="{!pw.date_purchased}"/>
+    </apex:dataTable>
+</apex:page>

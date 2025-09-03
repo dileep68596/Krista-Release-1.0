@@ -1,0 +1,113 @@
+
+public static void getEventData(List<CS_Case_Notification_PE__e> csList){
+try {
+    if(csList != NULL) {
+        CS_SAPSFCaseNotificationParser caseResponse= new CS_SAPSFCaseNotificationParser();
+        CS_SAPSFCaseNotificationParser orderResponse= new CS_SAPSFCaseNotificationParser();
+        CS_SAPSFCaseNotificationParser orderItemResponse= new CS_SAPSFCaseNotificationParser();
+        List<CS_SAPSFCaseNotificationParser> orderItemResponseList = new List<CS_SAPSFCaseNotificationParser>();
+        List<CS_SAPSFCaseNotificationParser.OrderLineItemDetails> orderItemListListWrap = new List<CS_SAPSFCaseNotificationParser.OrderLineItemDetails>();
+        List<Case> caseList =new List<Case>(); 
+        List<Case> listOfCaseUpdate = new List<Case>();
+        List<Order> listOfOrderUpdate = new List<Order>();
+        List<Order> orderList = new List<Order>();
+        List<OrderItem> listOfOrderItemUpdate = new List<OrderItem>();
+        List<CS_Invoice__c> listOfInvUpdate = new List<CS_Invoice__c>();
+        Set<String> caseId=new Set<String>();
+        map<String,String> ordListMap= new map<String,String>();
+        map<String,String> ordItemSAPNetPriceMap = new map<String,String>();
+        map<String,String> ordItemOrderLineStatusMap = new map<String,String>();
+        List<OrderItem> oList = new List<OrderItem>();
+        List<OrderItem> oiUpdateList = new List<OrderItem>();
+        Set<id> CaseIds = new Set<id>();
+        Map<String,Order> CaseOrder = new Map<String,Order>();
+        List<Case> CaseRecordsList = new List<Case>();
+        for(CS_Case_Notification_PE__e caseNotification : csList){
+            String caseParse = '';
+            CS_SAPSFCaseNotificationParser.CaseDetails CaseDetailswrap;
+            if(String.isNotBlank(caseNotification.CS_Case_Details__c)){
+                caseParse = caseNotification.CS_Case_Details__c;
+                caseResponse = CS_SAPSFCaseNotificationParser.parse(caseParse);
+                if(caseResponse != null && caseResponse.caseDetails != null){
+                    CaseDetailswrap = caseResponse.caseDetails;
+                }
+                else {
+                    throw new CS_CustomException(CS_CustomException.CS_ORDERPRODUCTRESPONSE);
+                }
+            }
+            else
+            {
+                throw new CS_CustomException(CS_CustomException.CS_INVALID_CASE_ID);
+            }
+            If(String.isNotBlank(CaseDetailswrap.Action) && CaseDetailswrap.Action == CS_ConstantClass.ACTION_UPDATE){
+                String orderParse = '';
+                CS_SAPSFCaseNotificationParser.OrderDetails OrderDetailsWrap;
+                if(String.isNotBlank(caseNotification.CS_Order_Details__c)){
+                    orderParse = caseNotification.CS_Order_Details__c;
+                    orderResponse = CS_SAPSFCaseNotificationParser.parse(orderParse);
+                    if(orderResponse != null && orderResponse.orderDetails != null){
+                        OrderDetailsWrap = orderResponse.orderDetails;
+                    }
+                    else{
+                        throw new CS_CustomException(CS_CustomException.CS_ORDERRESPONSE);
+                    }
+                }
+                else{
+                    throw new CS_CustomException(CS_CustomException.CS_ORDERRESPONSE);
+                }
+                String orderItemParse = ''; 
+                if(String.isNotBlank(caseNotification.CS_Order_Line_Items__c)){
+                    orderItemParse = caseNotification.CS_Order_Line_Items__c;
+                    orderItemResponse = CS_SAPSFCaseNotificationParser.parse(orderItemParse);
+                    orderItemResponseList.add(orderItemResponse);
+                    orderItemListListWrap.addAll(orderItemResponse.OrderLineItems.OrderLineItemDetails); 
+                }
+                else{
+                    throw new CS_CustomException(CS_CustomException.CS_ORDERPRODUCTRESPONSE);
+                }
+                if(String.isNotBlank(CaseDetailswrap.CaseID) && CaseDetailswrap.CaseID.length() == 10)
+                {
+                    if(OrderDetailsWrap.ReturnOrderType == CS_ConstantClass.RETURN_ORDERTYPE_ZREA || OrderDetailsWrap.ReturnOrderType == CS_ConstantClass.RETURN_ORDERTYPE_ZREB || OrderDetailsWrap.ReturnOrderType == CS_ConstantClass.RETURN_ORDERTYPE_YRE){
+                        caseId.add(CaseDetailswrap.CaseID);
+                    }
+                    else {
+                        throw new CS_CustomException(CS_CustomException.CS_CASE_ID_RETURNORDERTYPE);
+                    }
+                }
+                else
+                {
+                    throw new CS_CustomException(CS_CustomException.CS_INVALID_CASE_ID);
+                }
+            }
+        }
+        if(caseId != NULL) {
+                     List<Order> oLst = new List<Order>();
+            List<String> orderfieldNames = new List<String>{'Order.CS_Sales_Document_Number__c','Order.Status','Order.CS_SAP_Net_Price__c','Order.CS_Case_ID__c'};
+                CS_QuerySelector oiQuery = new CS_QuerySelector('Order', orderfieldNames);
+            oLst = oiQuery.passStringAsParameter(oiUpdateList[0].Order.CS_Sales_Document_Number__c, NULL, NULL, 'CS_Sales_Document_Number__c =: conditionVar1', NULL, NULL, orderfieldNames, NULL, NULL, NULL); 
+            oLst[0].CS_SAP_Net_Price__c = decimal.valueOf(orderResponse.orderDetails.SAPNetPrice);
+            oLst[0].CS_SAP_Order_Number__c = orderResponse.orderDetails.sapOrderId;
+            //CaseOrder.put(String.valueof(caseId),oLst[0]); 
+                    List<Case> CaseRecords = [Select id,CS_Procedure__c,CS_Case_Estimate_Value__c,CS_Case_Name__c from Case where CS_Case_Name__c in:caseId];
+         if(CS_ConstantClass.INTEGRATIONSYSTEMNAME_SHIFT.equalsIgnoreCase(caseResponse.CaseDetails.SystemName)){            
+                    for(case CS : CaseRecords){
+                    if(CS.CS_Procedure__c == CS_ConstantClass.PROCEDURE_PLANNEDPHYSICALRETWITHOUTCREDITNOTE || CS.CS_Procedure__c == CS_ConstantClass.PROCEDURE_NPRWTREIMBURSEMENT || CS.CS_Procedure__c == CS_ConstantClass.PROCEDURE_UNPLANNEDWITHOUTRE){
+                        //CS.CS_Case_Estimate_Value__c = String.valueOf(CaseOrder.get(CS.CS_Case_Name__c).CS_SAP_Net_Price__c);
+                        CS.CS_Case_Estimate_Value__c = String.valueOf(decimal.valueOf(orderResponse.orderDetails.SAPNetPrice));
+                    }
+                        CaseRecordsList.add(CS);           
+                    }
+                 Update CaseRecordsList;
+                  }       
+            update oLst;
+        }
+        else{
+            caseResponse.errorMessage = CS_CustomException.CS_CASE_ID_BLANK;
+        }
+    }   
+}
+ 
+ 
+catch (Exception ex) {
+    ExceptionLogHandler.createErrorRecord(ex, 'CS_CaseNotificationTriggerHelper');
+}

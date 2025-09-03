@@ -1,0 +1,10 @@
+<apex:page controller="opportunityController">
+    <apex:pageBlock >
+        <apex:dataTable value="{!op}" var="a"  cellpadding="5" cellspacing="5" border="1" frame="rules">
+            <apex:column headerValue="Name" value="{!a.Name}" />
+            <apex:column headerValue="Amount" value="{!a.Amount}"/>
+            <apex:column headerValue="CloseDate" value="{!a.CloseDate}"/>
+            <apex:column headerValue="StageName" value="{!a.StageName}"/>
+        </apex:dataTable>
+    </apex:pageBlock>
+</apex:page>

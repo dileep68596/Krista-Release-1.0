@@ -1,0 +1,29 @@
+<apex:page >
+    <apex:form >
+        <apex:sectionHeader title="Customer" subtitle="new Customer" help="https://hippologic.in"/>        
+        
+        <apex:pageBlock title="Customer Info" helpUrl="https://hippologic.in" helpTitle="Customer Portal" tabStyle="Lead" >  
+            
+            
+            <apex:pageBlockSection columns="4">
+                Name: <apex:inputText />     
+                Phone: <apex:inputText /> 
+                Product Purchase: <apex:inputText />
+                Date Purchase: <apex:inputSecret />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Customer Info" helpUrl="https://hippologic.in" helpTitle="Customer Portal" tabStyle="Lead" > 
+            <apex:pageBlockSection columns="4">
+                Name: <apex:inputText />     
+                Phone: <apex:inputText />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="6">
+                Order Placed (Yes/No): <apex:inputCheckbox /> 
+                Email: <apex:inputText /> 
+                City: <apex:inputSecret />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

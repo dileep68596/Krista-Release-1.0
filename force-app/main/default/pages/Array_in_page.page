@@ -1,0 +1,9 @@
+<apex:page controller="Array_in_page">
+     <apex:form >
+        <apex:pageBlock >
+            <apex:dataList value="{!Cities}" var="c">
+                <apex:outputText value="{!c}"/>
+            </apex:dataList>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>

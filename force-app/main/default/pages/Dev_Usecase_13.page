@@ -1,0 +1,46 @@
+<apex:page standardController="Account" recordSetVar="acc">
+    <apex:form >
+        <apex:pageBlock title="pageBlockTable">         
+            <apex:pageBlockTable value="{!acc}" var="a" id="pb" rows="5"> <!-- iterating -->
+                <apex:column value="{!a.Name}"/>
+                <apex:column value="{!a.Phone}"/>
+                <apex:column value="{!a.Industry}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="DataTable">         
+            <apex:dataTable value="{!acc}" var="a" id="pb" rows="5" border="1" cellpadding="5" cellspacing="5"> <!-- iterating -->
+                <apex:column headerValue="Name" value="{!a.Name}"/>
+                <apex:column headerValue="Phone" value="{!a.Phone}"/>
+                <apex:column headerValue="Domain" value="{!a.Industry}"/>
+            </apex:dataTable>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="repeat 1">         
+            <apex:repeat value="{!acc}" var="a" id="pb" rows="5"> <!-- iterating -->
+                {!a.Name} &nbsp; &nbsp; {!a.Phone}
+            </apex:repeat>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="repeat 2">         
+            <table border="1px">
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Industry</th>
+                <apex:repeat value="{!acc}" var="a" id="pb" rows="5"> <!-- iterating -->                
+                    <tr>
+                    	<td>{!a.Name}</td>	
+                        <td>{!a.Phone}</td>	
+                        <td>{!a.Industry}</td>	
+                    </tr>                    
+                </apex:repeat>
+            </table>
+        </apex:pageBlock>
+        
+         <apex:pageBlock title="DataList">         
+            <apex:dataList value="{!acc}" var="a" id="pb" rows="5"> <!-- iterating -->
+                <apex:outputText value="{!a.Name}"/>               
+            </apex:dataList>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

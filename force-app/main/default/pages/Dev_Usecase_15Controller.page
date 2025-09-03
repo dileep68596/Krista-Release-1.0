@@ -1,0 +1,35 @@
+<apex:page controller="Dev_Usecase_15">
+    <apex:sectionHeader title="Emloyee Details" subtitle="New Employee"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputText >Employee Name</apex:outputText>
+                    <apex:inputText />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText >Phone</apex:outputText>
+                    <apex:inputText />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageblocksection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputText >Experience Personnel</apex:outputText>
+                    <apex:inputcheckbox value="{!chkBx}" label="Experience Personnel">
+                        <apex:actionSupport event="onchange" rerender="thePanel" action="{!click}"/>
+                    </apex:inputcheckbox>
+                </apex:pageBlockSectionItem>
+                <apex:outputPanel id="thePanel"> <br/>
+                    <apex:pageBlockSectionItem rendered="{!displayInputputText}">
+                        <apex:outputLabel value="Company Name" />
+                        <apex:inputText value="{!input}"/>
+                    </apex:pageBlockSectionItem> <br/>
+                    <apex:pageBlockSectionItem rendered="{!displayInputputText}">
+                        <apex:outputLabel value="CTC (Salary)" />
+                        <apex:inputText value="{!input}"/>
+                    </apex:pageBlockSectionItem>
+                </apex:outputPanel>
+            </apex:pageblocksection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

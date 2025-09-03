@@ -1,0 +1,17 @@
+<apex:page standardController="Account" recordSetVar="acc">
+    <apex:form >
+    	<apex:pageBlock >
+        	<apex:pageBlockButtons >
+            	<apex:commandButton action="{!first}" value="first" reRender="pb"/>
+                <apex:commandButton action="{!previous}" value="prev" reRender="pb"/>
+                <apex:commandButton action="{!next}" value="next" reRender="pb"/>
+                <apex:commandButton action="{!last}" value="last" reRender="pb"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!acc}" var="a" id="pb">
+            	<apex:column value="{!a.Name}"/>
+                <apex:column value="{!a.Phone}"/>
+                <apex:column value="{!a.Industry}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
