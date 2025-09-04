@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="search Patient">
+    
+
+        <lightning-input label="Enter Patient Name" onchange={handleChange}
+
+            value={str}></lightning-input>
+
+            <p slot="actions"><lightning-button label="search" onclick={handlesearch}  variant="success"></lightning-button></p>
+
+           
+            <lightning-layout  multiple-rows="True">
+
+                <lightning-layout-item padding="around-small" size="3" >
+
+                    <lightning-card title="Patient Details" icon-name="standard:contact" >
+
+                        <template for:each={patients} for:item="p">
+                            <p key={p.Id}><b>Name           :{p.Name}</b></p>
+                            <p key={p.id}><b>Phone         :{p.Mobile_Number__c}</b></p>
+                            <p key={p.id}><b>Age           :{p.Age__c}</b></p>
+                            <p key={p.id}><b>Gender        :{p.Gender__c}</b></p>
+                            <p key={p.id}><b>Ward Name           :{p.Ward_Number__r.Ward_Name__c}</b></p>
+                            <p key={p.id}><b>Ward Number        :{p.Ward_Number__r.Name}</b></p>
+
+                        </template>
+
+                     </lightning-card>
+
+                </lightning-layout-item>
+
+            </lightning-layout>
+
+
+            <template if:true={error}>
+                <p>Error in apex call!</p>
+            </template>
+    </lightning-card>
+</template>

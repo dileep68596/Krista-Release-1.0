@@ -1,0 +1,18 @@
+h2.THIS{
+    color:red;
+}
+
+.THIS.para{
+    /*color:darkgreen;*/
+    /*color:RGB(100,100,100);*/
+   /* color:#000000;*/
+    color:red;
+}
+
+.THIS .para1{
+    /*color:darkgreen;*/
+    /*color:RGB(100,100,100);*/
+   /* color:#000000;*/
+    background-color:yellow;
+    color:blue;
+}

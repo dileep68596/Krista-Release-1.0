@@ -1,0 +1,14 @@
+<template>
+    //<lightning-card title="test" ></lightning-card>
+    <lightning-card title="HelloWorld" icon-name="custom:custom14">
+
+        <div class="slds-m-around-medium">
+            <p>Hello, {greeting}!</p>
+            <lightning-input label="Name" value={greeting} onchange={changeHandler}></lightning-input>
+            <lightning-input label="City" value={address.city} onchange={changeHandlercity}></lightning-input>
+            <div class="slds-m-around-medium"> 
+                City updated: {address.City}{address.Code}
+            </div>
+        </div>
+    </lightning-card>
+</template>

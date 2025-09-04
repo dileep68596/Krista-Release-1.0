@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<h1>This is my first componenet</h1>
+    <lightning:button label="submit"></lightning:button>
+</aura:component>

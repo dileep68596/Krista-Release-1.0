@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <lightning:card title="Account Details" iconName="standard:account">
+        <aura:set attribute="actions">
+            <lightning:button label="submit" variant="brand" onclick="{!c.handleSubmit}"></lightning:button>
+        </aura:set>
+    </lightning:card>
+    <aura:attribute type="Account" name="acc" default="{sObjectType:'Account'}"></aura:attribute>
+    <aura:attribute type="Contact" name="con" ></aura:attribute>
+    <aura:attribute type="Training__c" name="trn" ></aura:attribute>
+    <div class="demo">
+        <lightning:input label="Enter Name" value="{!v.acc.Name}"></lightning:input>
+        <lightning:input label="Enter Phone" value="{!v.acc.Phone}"></lightning:input>
+        <lightning:input label="Enter Industry" value="{!v.acc.Industry}"></lightning:input>
+    </div>
+</aura:component>

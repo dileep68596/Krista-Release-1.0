@@ -1,0 +1,50 @@
+<aura:component implements="force:appHostable" >
+    <lightning:card  title="Cognizant Technology-SFDC Developer" iconName="standard:opportunity">
+        <aura:set attribute="actions">
+            <lightning:button label="Follow" variant="brand" iconName="utility:add"></lightning:button>
+            <lightning:button label="New Case" variant="brand"></lightning:button>
+            <lightning:button label="New Note" variant="brand"></lightning:button>
+            <lightning:button label="Clone" variant="brand" ></lightning:button>
+            
+            <lightning:buttonMenu>
+                <lightning:menuItem label="Create"></lightning:menuItem>
+                <lightning:menuItem label="Edit"></lightning:menuItem>
+                <lightning:menuItem label="Submit For Approval"></lightning:menuItem>
+                <lightning:menuItem label="Change Owner"></lightning:menuItem>
+                <lightning:menuItem label="Delete"></lightning:menuItem>
+            </lightning:buttonMenu>   
+        </aura:set>
+       
+            <lightning:layout >
+                <lightning:layoutItem padding="around-small">
+                    <div class="header-column">
+                        <p class="field-title" title="Name">Account Name</p>
+                        <a href="#">Cognizant Technologies</a>
+                    </div>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem padding="around-small">
+                    <div class="header-column">
+                        <p class="field-title" title="Close date">Close Date</p>
+                        <p>9/19/2021</p>
+                    </div>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem padding="around-small">
+                    <div class="header-column">
+                        <p class="field-title" title="Amount">Amount</p>
+                        <p>$1,00,000.00</p>
+                    </div>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem padding="around-small">
+                    <div class="header-column">
+                        <p class="field-title" title="Owner">Opportunity Owner</p>
+                        <a href="#">Asmita Ghosh</a>
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+       
+        
+    </lightning:card>
+</aura:component>

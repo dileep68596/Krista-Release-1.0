@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="empName" type="String"></aura:attribute>
+    <aura:attribute name="empAge" type="Integer"></aura:attribute>
+    <aura:attribute name="empCity" type="String"></aura:attribute>
+    <lightning:input label="Name" value="{!v.empName}"></lightning:input>
+    <lightning:input label="Age" value="{!v.empAge}"></lightning:input>
+    <lightning:input label="City" value="{!v.empCity}"></lightning:input>
+</aura:component>

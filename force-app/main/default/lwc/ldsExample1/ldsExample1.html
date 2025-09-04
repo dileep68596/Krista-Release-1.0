@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Account manager using LDS">
+        <lightning-layout>
+            <lightning-layout-item size="5" padding="arround-small">
+                <lightning-record-edit-form object-api-name="Account" onsuccess={successHandler}>
+                    <p><lightning-input-field field-name="Name"></lightning-input-field></p>
+                    <p><lightning-input-field field-name="Address"></lightning-input-field></p>
+                    <p><lightning-input-field field-name="Email"></lightning-input-field></p>
+                </lightning-record-edit-form>
+            </lightning-layout-item>
+            <lightning-layout-item size="5" padding="arround-small">
+                <lightning-card title="Account Update using LDS">
+                    <lightning-record-view-form object-api-name="Account" record-id={recordID}>
+                        <div class="slds-box">
+                            <p><lightning-output-field field-name="Name"></lightning-output-field></p>
+                            <p><lightning-output-field field-name="Address"></lightning-output-field></p>
+                            <p><lightning-output-field field-name="Email"></lightning-output-field></p>
+                        </div>
+                    </lightning-record-view-form>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

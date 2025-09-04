@@ -15,7 +15,7 @@ public class CaseTriggerHandler {
             }
         }
         
-        /* Closed cases cannot be re-opened */
+        /* Closed cases cannot be re-opened 
         
         for(Case oldRecord : oldRecords){
             for(Case newRecord : newRecords){
@@ -24,6 +24,6 @@ public class CaseTriggerHandler {
                        newRecord.Status.addError('Closed Case cannot be re-opened');
                    }
             }
-        }
+        } */
     }
 }

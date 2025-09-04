@@ -1,0 +1,14 @@
+<aura:component >
+    <aura:attribute name="empName" type="String"></aura:attribute>
+    <aura:attribute name="empAge" type="Integer"></aura:attribute>
+    <aura:attribute name="empCity" type="String"></aura:attribute>
+    <lightning:input label="Name" value="{!v.empName}"></lightning:input>
+    <lightning:input label="Age" value="{!v.empAge}"></lightning:input>
+    <lightning:input label="City" value="{!v.empCity}"></lightning:input>
+    <div>
+        <p>Employee Name: {!v.empName}</p>
+        <p>Employee Age: {!v.empAge}</p>
+        <p>Employee City: {!v.empCity}</p>
+        
+    </div>
+</aura:component>

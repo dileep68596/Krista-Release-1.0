@@ -1,0 +1,9 @@
+<template>
+    <!-- component composition-->
+    <lightning-card title="PARENT COMP" icon-name="utility:connected_apps">
+        <p>Received data from: {childData}</p>
+        <p>This is parent Comp!</p>
+    </lightning-card>
+    <c-child-comp child-name="Tamil Nadu" onsenddatafromchild= "{handlechildevent}">       <!-- parent to child commmuncation  (cabab case)-->
+    </c-child-comp> 
+</template>

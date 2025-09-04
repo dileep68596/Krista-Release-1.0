@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable" >
+    <lightning:button label="Follow" variant="brand" iconName="utility:add"></lightning:button>
+    <lightning:buttonGroup>
+        
+        <lightning:button label="New Case" variant="brand"></lightning:button>
+        <lightning:button label="New Note" variant="brand"></lightning:button>
+        <lightning:button label="Clone" variant="brand" ></lightning:button>
+        
+		<lightning:buttonMenu>
+            <lightning:menuItem label="Create"></lightning:menuItem>
+            <lightning:menuItem label="Edit"></lightning:menuItem>
+            <lightning:menuItem label="Submit For Approval"></lightning:menuItem>
+            <lightning:menuItem label="Change Owner"></lightning:menuItem>
+            <lightning:menuItem label="Delete"></lightning:menuItem>
+        </lightning:buttonMenu>    
+    </lightning:buttonGroup>
+</aura:component>

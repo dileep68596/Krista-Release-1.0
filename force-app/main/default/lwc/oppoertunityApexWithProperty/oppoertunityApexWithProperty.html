@@ -1,0 +1,15 @@
+<template>
+    <template if:true={opps.data}>
+       
+        <template for:each={opps.data} for:item="a">
+              <p key={a.Id}>{a.Name}
+                            {a.StageName}
+                            {a.Amount}
+              </p>
+              
+        </template>
+    </template> 
+    <template if:true={opps.error}>
+        <p>Error in apex call!</p>
+    </template>
+</template>

@@ -1,0 +1,30 @@
+<aura:component controller="contactController" implements="force:appHostable">
+    <aura:attribute type="Contact[]" name="cons" default="{sObjectType:'Contact'}"/>
+    <aura:attribute type="Boolean" name="truth" default="false"/>
+    <lightning:navigation aura:id="navService"/>
+    
+    <lightning:button label="Get All Contacts" variant="Success" onclick="{!c.getConFromApex}"/>
+    
+    <br/> <br/>
+    
+    <aura:renderIf isTrue="{!v.truth}">
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{!v.cons}" var="con">
+                <lightning:layoutItem padding="around-small" size="3">
+                    <lightning:card title="Contact" iconName="standard:contact">
+                        <aura:set attribute="actions">
+                            <lightning:button label="View" name="View" variant="Brand" onclick="{!c.handleNav}" value="{!con.Id}"/>
+                        </aura:set>
+                        
+                        <div style="padding: 10px">
+                            <p><a href="#">{!con.FirstName + ' ' + con.LastName}</a></p>
+                            <p>Title: {!con.Title}</p>
+                            <p>Email: <a href="#">{!con.Email}</a></p>
+                            <p>Phone: <a href="#">{!con.Phone}</a></p>
+                        </div>
+                    </lightning:card>
+                </lightning:layoutItem>
+            </aura:iteration>
+        </lightning:layout>
+    </aura:renderIf>
+</aura:component>

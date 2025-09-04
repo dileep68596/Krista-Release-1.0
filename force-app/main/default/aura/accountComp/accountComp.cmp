@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+	<h1>Aura developer Course</h1>
+    <lightning:button label="submit"></lightning:button>
+</aura:component>

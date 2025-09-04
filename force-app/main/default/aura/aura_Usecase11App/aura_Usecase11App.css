@@ -1,0 +1,7 @@
+.THIS.demo {
+    width: 600px;
+    background-color: rgba(255,0,0,0.2);
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 10px;
+}

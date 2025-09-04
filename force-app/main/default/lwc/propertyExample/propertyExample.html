@@ -1,0 +1,12 @@
+<template>
+    {name}   <br/>
+    {city}
+    <lightning-input label="enter name" value={name} onchange={handleChange}></lightning-input>
+
+    <lightning-card title="Account" icon-name="standard:account">
+        <!--p slot="actions"><lightning-button label="Save" variant="success"></lightning-button></p-->
+        <p slot="actions"><lightning-button label="Clear" variant="success" onclick={handleClear}></lightning-button></p>
+        <lightning-input label="Enter Account Name" value={name}></lightning-input>
+    </lightning-card>
+    <p>{name}</p>
+</template>
