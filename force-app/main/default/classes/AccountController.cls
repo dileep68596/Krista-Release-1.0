@@ -7,7 +7,6 @@ public class AccountController{
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccounts(){
         return [Select Name, Phone, Industry, AnnualRevenue From Account];
-        System.debug('Test Email');
     }
     
     @AuraEnabled(cacheable=true)
